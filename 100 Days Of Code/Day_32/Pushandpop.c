@@ -5,56 +5,65 @@
 int stack[MAX];
 int top = -1;
 
-void push(int value) {
+void push(int value){
     if(top == MAX - 1){
+        printf("Stack is overflow");
+        return 0;
+    }
+
+    else{
+        top++;
         stack[top] = value;
-        printf("%d pushed into stack\n" , value);
+        printf("%d element popped" , value);
     }
-    
 }
 
-void pop(){
-    if(top == -1){
-        printf("Stack Underflow\n");
-    }
-    else{
-        printf("%d popped from stack\n" , stack[top]);
-        top--;
-    }     
-}
+    void pop(){
+        if(top == -1){
+            printf("Stack is underflow");
+            return 0;
+        }
 
-void display() {
-    if(top == -1){
-        printf("Stack is empty\n");
-    }
-    else{
-        printf("Remaining stack elements (top to bottom): ");
-        for(int i = top ; i >= 0 ;i--){
-            printf("%d" , stack[i]);
+        else{
+            printf("%d popped from the stack" , stack[top]);
+            top--;
         }
     }
-}
 
-int main() {
-    int n , m , value;
+    void display(){
+        if(top == -1){
+            printf("Stack is empty");
+        }
 
-    printf("Enter number of elements to push: ");
-    scanf("%d" ,&n);
-
-    printf("Enter %d elements:\n" , n);
-
-    for(int i = 0 ; i < n ; i++){
-        scanf("%d" , &value);
-        psuh(value);
-    }
-    printf("Enter number of elements to pop: ");
-    scanf("%d" , &m);
-
-    for(int i = 0 ; i < m ; i++) {
-        pop();
+        else{
+            printf("Elements in stack(top to bottom): ");
+            for(int i = top ; i >=0 ; i--){
+                printf("%d" , stack[i]);
+            }
+        }
     }
 
-    display();
+    int main(){
+        int n , m , value;
 
-    return 0;
-}
+        printf("Enter number of elements to push: ");
+        scanf("%d" , &n);
+
+        printf("Enter values of %d elements: " , n);
+        for(int i = 0 ; i < n ; i++){
+            scanf("%d" , &value);
+            top++;
+        }
+
+        printf("Enter element to pop from stack: ");
+        scanf("%d" , &m);
+
+        for(int i = 0 ; i < m ; i++){
+            pop();
+        }
+
+        display();
+
+        return 0;
+
+    }
